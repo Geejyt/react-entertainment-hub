@@ -32,9 +32,7 @@ const Search = () => {
   const fetchSearch = async () => {
     try {
       const { data } = await axios.get(
-        `https://api.themoviedb.org/3/search/${type ? "tv" : "movie"}?api_key=${
-          process.env.REACT_APP_API_KEY
-        }&language=en-US&query=${searchText}&page=${page}&include_adult=false`
+        `https://api.themoviedb.org/3/search/${type ? "tv" : "movie"}?api_key=d8a214a79bb289e38d71810f00db7963&language=fr&query=${searchText}&page=${page}&include_adult=false`
       );
       setContent(data.results);
       setNumOfPages(data.total_pages);
@@ -57,7 +55,7 @@ const Search = () => {
           <TextField
             style={{ flex: 1 }}
             className="searchBox"
-            label="Search"
+            label="Recherchez"
             variant="filled"
             onChange={(e) => setSearchText(e.target.value)}
           />
@@ -80,8 +78,8 @@ const Search = () => {
           style={{ paddingBottom: 5 }}
           aria-label="disabled tabs example"
         >
-          <Tab style={{ width: "50%" }} label="Search Movies" />
-          <Tab style={{ width: "50%" }} label="Search TV Series" />
+          <Tab style={{ width: "50%" }} label="Un film" />
+          <Tab style={{ width: "50%" }} label="Série TV" />
         </Tabs>
       </ThemeProvider>
       <div className="trending">
@@ -99,7 +97,7 @@ const Search = () => {
           ))}
         {searchText &&
           !content &&
-          (type ? <h2>No Series Found</h2> : <h2>No Movies Found</h2>)}
+          (type ? <h2>Pas de séries trouvées</h2> : <h2>Pas de films trouvées</h2>)}
       </div>
       {numOfPages > 1 && (
         <CustomPagination setPage={setPage} numOfPages={numOfPages} />
